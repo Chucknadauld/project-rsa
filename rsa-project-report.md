@@ -212,7 +212,7 @@ Overall space complexity is O(M + n).
 
 #### Encryption
 
-- Theoretical order of growth: **O(M*n)**
+- Theoretical order of growth: **O(n^3)**
 - Measured constant of proportionality for theoretical order: **1.36e-02**
 - Empirical order of growth (if different from theoretical): 
 - Measured constant of proportionality for empirical order: 
@@ -223,7 +223,7 @@ For a fixed file size, encryption time grows roughly linearly with key size.
 
 #### Decryption
 
-- Theoretical order of growth: **O(M*n)**
+- Theoretical order of growth: **O(n^3)**
 - Measured constant of proportionality for theoretical order: **1.50e+01**
 - Empirical order of growth (if different from theoretical):
 - Measured constant of proportionality for empirical order:
