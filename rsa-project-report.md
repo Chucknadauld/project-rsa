@@ -69,23 +69,23 @@ We store an n-bit candidate number which takes O(n) space. The fermat test uses 
 
 | N    | time (ms) |
 |------|-----------|
-| 64   |           |
-| 128  |           |
-| 256  |           |
-| 512  |           |
-| 1024 |           |
-| 2048 |           |
+| 64   | 0.49      |
+| 128  | 1.87      |
+| 256  | 12.36     |
+| 512  | 150.88    |
+| 1024 | 1563.95   |
+| 2048 | 14457.44  |
 
 ### Comparison of Theoretical and Empirical Results
 
-- Theoretical order of growth: *copy from section above* **O(n^4)**
-- Measured constant of proportionality for theoretical order: 
+- Theoretical order of growth: **O(n^4)**
+- Measured constant of proportionality for theoretical order: **1.48e-09**
 - Empirical order of growth (if different from theoretical): 
 - Measured constant of proportionality for empirical order: 
 
-![img](img.png)
+![baseline_plot](baseline_plot.png)
 
-*Fill me in*
+The empirical analysis matches the theoretical analysis of O(n^4).
 
 ## Core
 
@@ -140,23 +140,23 @@ The key generation stores two n-bit primes and performs calculations that use O(
 
 | N    | time (ms) |
 |------|-----------|
-| 64   |           |
-| 128  |           |
-| 256  |           |
-| 512  |           |
-| 1024 |           |
-| 2048 |           |
+| 64   | 0.59      |
+| 128  | 3.62      |
+| 256  | 32.39     |
+| 512  | 289.13    |
+| 1024 | 3311.74   |
+| 2048 | 38856.16  |
 
 ### Comparison of Theoretical and Empirical Results
 
-- Theoretical order of growth: *copy from section above* **O(n^4)**
-- Measured constant of proportionality for theoretical order: 
+- Theoretical order of growth: **O(n^4)**
+- Measured constant of proportionality for theoretical order: **3.14e-09**
 - Empirical order of growth (if different from theoretical): 
 - Measured constant of proportionality for empirical order: 
 
-![img](img.png)
+![core_plot](core_plot.png)
 
-*Fill me in*
+The empirical analysis matches the theoretical analysis of O(n^4).
 
 ## Stretch 1
 
