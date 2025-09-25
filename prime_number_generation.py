@@ -2,6 +2,7 @@ import sys
 import random
 from time import time
 
+sys.setrecursionlimit(10000)
 
 # You will need to implement this function and change the return value.
 def mod_exp(x: int, y: int, N: int) -> int:
