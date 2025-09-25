@@ -4,7 +4,15 @@ from time import time
 
 # You will need to implement this function and change the return value.
 def mod_exp(x: int, y: int, N: int) -> int:
-    return 0
+    if y == 0:
+        return 1
+
+    z = mod_exp(x, y // 2, N)
+
+    if y % 2 == 0:
+        return (z * z) % N
+    else:
+        return (x * z * z) % N
 
 
 def fermat(N: int, k: int) -> bool:
