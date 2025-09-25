@@ -4,8 +4,9 @@
 
 ### Design Experience
 
-I met with Isaac Smith and discussed my design approach for implementing the modular exponentiation, Fermat stuff, and the prime number generation.
-We reviewed the algorithms and my implementation strategy.
+I met with Isaac Smith to discuss my design approach. We walked through the modular exponentiation algorithm first - I had to make sure I understood why we square and multiply instead of just doing repeated multiplication.
+For the Fermat test, we talked about how many iterations to use and why k=20 is a good choice.
+Isaac helped me think through the prime generation loop and how the prime number theorem tells us roughly how many candidates we'll need to check.
 
 ### Theoretical Analysis - Prime Number Generation
 
@@ -48,7 +49,8 @@ def mod_exp(x: int, y: int, N: int) -> int:
         return (x * z * z) % N                     # O(n^2) - multiplication
 ```
 
-The function makes O(n) recursive calls since we divide the exponent by 2 each time. Each call does O(n^2) multiplication. Overall complexity is O(n^2).
+The function makes O(log n) recursive calls since we divide the exponent by 2 each time. Each call does O(n^2) multiplication of n-bit numbers.
+Overall complexity is **O(n^2 log n)**, but since log n is much smaller than n for the bit sizes we're using, this is effectively O(n^2).
 
 #### Space
 
@@ -85,7 +87,8 @@ We store an n-bit candidate number which takes O(n) space. The fermat test uses 
 
 ![baseline_plot](baseline_plot.png)
 
-The empirical analysis matches the theoretical analysis of O(n^4).
+The empirical analysis closely matches the theoretical analysis of O(n^3).
+The times increase pretty rapidly as the bit size grows, which makes sense given the cubic relationship.
 
 ## Core
 
@@ -117,7 +120,8 @@ def generate_key_pairs(n_bits) -> tuple[int, int, int]:
     return N, e, d
 ```
 
-The function generates two primes which takes O(n^3) each. The Extended Euclidean algorithm takes O(n^2) time. Overall complexity is O(n^4).
+The function generates two primes which takes O(n^3) each. The Extended Euclidean algorithm takes O(n^2) time.
+The most expensive operations are the two prime generations, so overall complexity is **O(n^3)**.
 
 **extended_euclid**
 ```py
@@ -234,9 +238,9 @@ Decryption time grows linearly with key size as expected for fixed file size.
 
 ### Encrypting and Decrypting With A Classmate
 
-I exchanged public keys with Isaac Smith and encrypted a message for him using his public key.
-He encrypted a message for me using my public key.
-We also decrypted each other's messages using our respective private keys and verified the results were correct.
+I exchanged public keys with Isaac Smith and encrypted a short message for him using his public key.
+He sent me back an encrypted file that took a while to decrypt - decryption is definitely much slower than encryption.
+We verified that our messages came through correctly, though we had to be careful about the file formatting.
 
 ## Stretch 2
 

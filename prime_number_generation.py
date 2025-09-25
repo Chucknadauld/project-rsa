@@ -74,8 +74,8 @@ def generate_large_prime(n_bits: int) -> int:
     """Generate a random prime number with the specified bit length"""
     while True:
         candidate = random.getrandbits(n_bits)
-        candidate != (1 << (n_bits - 1))
-        candidate != 1
+        candidate |= (1 << (n_bits - 1))
+        candidate |= 1
 
         if fermat(candidate, 20):
             return candidate
