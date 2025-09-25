@@ -25,3 +25,10 @@ Thumbs.db
 # Project specific
 *.private.txt
 *.public.txt
+
+# RSA key files and test artifacts
+*.public.txt
+*.private.txt
+*.bin
+encrypted.*
+decrypted.*
