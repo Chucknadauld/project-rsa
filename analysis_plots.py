@@ -23,7 +23,7 @@ def create_plot(n_values, times, k, title, filename):
     plt.plot(n_values, times, 'bo-', label='Empirical Data', linewidth=2)
     
     theoretical = [k * (n**4) for n in n_values]
-    plt.plot(n_values, theoretical, 'r--', label='Theoretical O(n^4)', linewidth=2)
+    plt.plot(n_values, theoretical, 'r--', label='Theoretical O(n^3)', linewidth=2)
     
     plt.xlabel('Key Size (bits)')
     plt.ylabel('Time (ms)')
