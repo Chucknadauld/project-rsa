@@ -32,6 +32,20 @@ primes = [
     97,
 ]
 
+def extended_euclid(a: int, b: int) -> tuple[int, int, int]:
+    """
+    Return x, y, d where ax + by = d = gcd(a, b)
+    Assuming a > b
+    """
+    if b == 0:
+        return 1, 0, a
+
+    x1, y1, d = extended_euclid(b, a % b)
+    x = y1
+    y = x1 - (a // b) * y1
+
+    return x, y, d
+
 
 def generate_key_pairs(n_bits) -> tuple[int, int, int]:
     """
