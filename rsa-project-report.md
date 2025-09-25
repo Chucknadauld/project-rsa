@@ -80,7 +80,7 @@ We store an n-bit candidate number which takes O(n) space. The fermat test uses 
 
 ### Comparison of Theoretical and Empirical Results
 
-- Theoretical order of growth: **O(n^4)**
+- Theoretical order of growth: **O(n^3)**
 - Measured constant of proportionality for theoretical order: **1.48e-09**
 - Empirical order of growth (if different from theoretical): 
 - Measured constant of proportionality for empirical order: 
@@ -153,14 +153,14 @@ The key generation stores two n-bit primes and performs calculations that use O(
 
 ### Comparison of Theoretical and Empirical Results
 
-- Theoretical order of growth: **O(n^4)**
+- Theoretical order of growth: **O(n^3)**
 - Measured constant of proportionality for theoretical order: **3.14e-09**
 - Empirical order of growth (if different from theoretical): 
 - Measured constant of proportionality for empirical order: 
 
 ![core_plot](core_plot.png)
 
-The empirical analysis matches the theoretical analysis of O(n^4).
+The empirical analysis matches the theoretical analysis of O(n^3).
 
 ## Stretch 1
 
