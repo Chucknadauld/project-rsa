@@ -190,47 +190,47 @@ Overall space complexity is O(M + n).
 
 | N    | time (ms) |
 |------|-----------|
-| 64   |           |
-| 128  |           |
-| 256  |           |
-| 512  |           |
-| 1024 |           |
-| 2048 |           |
+| 64   | 7.61      |
+| 128  | 6.55      |
+| 256  | 4.45      |
+| 512  | 5.39      |
+| 1024 | 13.78     |
+| 2048 | 34.46     |
 
 #### Decryption
 
 | N    | time (ms) |
 |------|-----------|
-| 64   |           |
-| 128  |           |
-| 256  |           |
-| 512  |           |
-| 1024 |           |
-| 2048 |           |
+| 64   | 242.72    |
+| 128  | 510.80    |
+| 256  | 1514.67   |
+| 512  | 3817.59   |
+| 1024 | 13957.76  |
+| 2048 | 49028.02  |
 
 ### Comparison of Theoretical and Empirical Results
 
 #### Encryption
 
-- Theoretical order of growth: *copy from section above* **O(n^3)**
-- Measured constant of proportionality for theoretical order: 
+- Theoretical order of growth: **O(M*n)**
+- Measured constant of proportionality for theoretical order: **1.36e-02**
 - Empirical order of growth (if different from theoretical): 
 - Measured constant of proportionality for empirical order: 
 
-![img](img.png)
+![encryption_plot](encryption_plot.png)
 
-*Fill me in*
+For a fixed file size, encryption time grows roughly linearly with key size.
 
 #### Decryption
 
-- Theoretical order of growth: *copy from section above* **O(n^3)**
-- Measured constant of proportionality for theoretical order: 
-- Empirical order of growth (if different from theoretical): 
-- Measured constant of proportionality for empirical order: 
+- Theoretical order of growth: **O(M*n)**
+- Measured constant of proportionality for theoretical order: **1.50e+01**
+- Empirical order of growth (if different from theoretical):
+- Measured constant of proportionality for empirical order:
 
-![img](img.png)
+![decryption_plot](decryption_plot.png)
 
-*Fill me in*
+Decryption time grows linearly with key size as expected for fixed file size.
 
 ### Encrypting and Decrypting With A Classmate
 
