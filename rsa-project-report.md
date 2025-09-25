@@ -15,8 +15,8 @@ We reviewed the algorithms and my implementation strategy.
 ```py
 def generate_large_prime(n_bits: int) -> int:
     while True:                                    # Expected O(n) iterations
-        candidate = random.getrandbits(n_bits)    # O(1) - generating random bits
-        candidate |= (1 << (n_bits - 1))          # O(1) - bitwise operations
+        candidate = random.getrandbits(n_bits)     # O(1) - generating random bits
+        candidate |= (1 << (n_bits - 1))           # O(1) - bitwise operations
         candidate |= 1                             # O(1) - bitwise operations
         if fermat(candidate, 20):                  # O(n^2) - fermat test
             return candidate                       # O(1) - return
@@ -56,9 +56,9 @@ The function makes O(n) recursive calls since we divide the exponent by 2 each t
 ```py
 def generate_large_prime(n_bits: int) -> int:
     while True:
-        candidate = random.getrandbits(n_bits)    # O(n) - storing n-bit number
+        candidate = random.getrandbits(n_bits)     # O(n) - storing n-bit number
         candidate |= (1 << (n_bits - 1))          
-        candidate |= 1                             
+        candidate |= 1                            
         if fermat(candidate, 20):                  # O(n) - recursive stack space
             return candidate
 ```
@@ -106,7 +106,7 @@ def generate_key_pairs(n_bits) -> tuple[int, int, int]:
     while p == q:                                 # Expected O(1) iterations
         q = generate_large_prime(n_bits)          # O(n^3) - rare case
     N = p * q                                     # O(n^2) - multiplication
-    phi_N = (p - 1) * (q - 1)                    # O(n^2) - multiplication
+    phi_N = (p - 1) * (q - 1)                     # O(n^2) - multiplication
     for candidate_e in primes:                    # O(1) - small constant list
         _, _, gcd_result = extended_euclid(phi_N, candidate_e)  # O(n^2) - extended euclid
         if gcd_result == 1:
@@ -117,7 +117,7 @@ def generate_key_pairs(n_bits) -> tuple[int, int, int]:
     return N, e, d
 ```
 
-The function generates two primes which takes O(n^3) each. The Extended Euclidean algorithm takes O(n^2) time. Overall complexity is O(n^3).
+The function generates two primes which takes O(n^3) each. The Extended Euclidean algorithm takes O(n^2) time. Overall complexity is O(n^4).
 
 **extended_euclid**
 ```py
@@ -126,7 +126,7 @@ def extended_euclid(a: int, b: int) -> tuple[int, int, int]:
         return 1, 0, a
     x1, y1, d = extended_euclid(b, a % b)         # O(n) recursive calls
     x = y1                                        # O(1) - assignment
-    y = x1 - (a // b) * y1                       # O(n^2) - arithmetic operations
+    y = x1 - (a // b) * y1                        # O(n^2) - arithmetic operations
     return x, y, d
 ```
 
@@ -234,7 +234,7 @@ Decryption time grows linearly with key size as expected for fixed file size.
 
 ### Encrypting and Decrypting With A Classmate
 
-I exchangeed public keys with Isaac Smith and encrypted a message for him using his public key.
+I exchanged public keys with Isaac Smith and encrypted a message for him using his public key.
 He encrypted a message for me using my public key.
 We also decrypted each other's messages using our respective private keys and verified the results were correct.
 
