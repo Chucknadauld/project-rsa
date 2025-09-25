@@ -44,7 +44,15 @@ def miller_rabin(N: int, k: int) -> bool:
 
 def generate_large_prime(n_bits: int) -> int:
     """Generate a random prime number with the specified bit length"""
-    return 4  # https://xkcd.com/221/
+    while True:
+        candidate = random.getrandbits(n_bits)
+        candidate != (1 << (n_bits - 1))
+        candidate != 1
+
+        if fermat(candidate, 20):
+            return candidate
+
+    #return 4  # https://xkcd.com/221/
 
 
 def main(n_bits: int):
