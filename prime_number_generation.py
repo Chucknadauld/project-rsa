@@ -1,4 +1,5 @@
 import sys
+import random
 from time import time
 
 
@@ -19,7 +20,19 @@ def fermat(N: int, k: int) -> bool:
     """
     Returns True if N is prime
     """
-    return False
+    if N <= 1:
+        return False
+    if N == 2:
+        return True
+    if N % 2 == 0:
+        return False
+
+    for _ in range(k):
+        a = random.randint(2, N - 1)
+        if mod_exp(a, N - 1, N) != 1:
+            return False
+
+    return True
 
 
 def miller_rabin(N: int, k: int) -> bool:
