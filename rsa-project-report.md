@@ -12,28 +12,33 @@ We reviewed the algorithms and my implementation strategy.
 #### Time 
 
 **generate_large_prime**
-pydef generate_large_prime(n_bits: int) -> int:
+```py
+def generate_large_prime(n_bits: int) -> int:
     while True:                                    # Expected O(n) iterations
         candidate = random.getrandbits(n_bits)    # O(1) - generating random bits
         candidate |= (1 << (n_bits - 1))          # O(1) - bitwise operations
         candidate |= 1                             # O(1) - bitwise operations
         if fermat(candidate, 20):                  # O(n^2) - fermat test
             return candidate                       # O(1) - return
+```
 
 The prime number theorem tells us about 1 in n numbers near 2^n are prime, so we expect about n iterations. Each iteration calls fermat which takes O(n^2) time. Overall complexity is O(n^3).
 
 **fermat**
-pydef fermat(N: int, k: int) -> bool:
+```py
+def fermat(N: int, k: int) -> bool:
     for _ in range(k):                             # O(k) iterations, k=20
         a = random.randint(2, N - 1)               # O(1) - random generation
         if mod_exp(a, N - 1, N) != 1:              # O(n^2) - modular exponentiation
             return False
     return True
+```
 
 The function runs k=20 trials, each calling mod_exp which takes O(n^2) time. Overall complexity is O(n^2).
 
 **mod_exp**
-pydef mod_exp(x: int, y: int, N: int) -> int:
+```py
+def mod_exp(x: int, y: int, N: int) -> int:
     if y == 0:                                     # O(1) - comparison
         return 1                                   # O(1) - return
     z = mod_exp(x, y // 2, N)                      # O(n) recursive calls
@@ -41,19 +46,22 @@ pydef mod_exp(x: int, y: int, N: int) -> int:
         return (z * z) % N                         # O(n^2) - multiplication
     else:
         return (x * z * z) % N                     # O(n^2) - multiplication
+```
 
 The function makes O(n) recursive calls since we divide the exponent by 2 each time. Each call does O(n^2) multiplication. Overall complexity is O(n^2).
 
 #### Space
 
 **generate_large_prime**
-pydef generate_large_prime(n_bits: int) -> int:
+```py
+def generate_large_prime(n_bits: int) -> int:
     while True:
         candidate = random.getrandbits(n_bits)    # O(n) - storing n-bit number
         candidate |= (1 << (n_bits - 1))          
         candidate |= 1                             
         if fermat(candidate, 20):                  # O(n) - recursive stack space
             return candidate
+```
 
 We store an n-bit candidate number which takes O(n) space. The fermat test uses O(n) stack space for recursion. Overall space complexity is O(n).
 
@@ -91,7 +99,8 @@ We reviewed how to find good e values and compute the private key.
 #### Time 
 
 **generate_key_pairs**
-pydef generate_key_pairs(n_bits) -> tuple[int, int, int]:
+```py
+def generate_key_pairs(n_bits) -> tuple[int, int, int]:
     p = generate_large_prime(n_bits)              # O(n^3) - generate first prime
     q = generate_large_prime(n_bits)              # O(n^3) - generate second prime
     while p == q:                                 # Expected O(1) iterations
@@ -106,17 +115,20 @@ pydef generate_key_pairs(n_bits) -> tuple[int, int, int]:
     x, y, _ = extended_euclid(phi_N, e)           # O(n^2) - extended euclid
     d = y % phi_N                                 # O(n) - modular arithmetic
     return N, e, d
+```
 
 The function generates two primes which takes O(n^3) each. The Extended Euclidean algorithm takes O(n^2) time. Overall complexity is O(n^3).
 
 **extended_euclid**
-pydef extended_euclid(a: int, b: int) -> tuple[int, int, int]:
+```py
+def extended_euclid(a: int, b: int) -> tuple[int, int, int]:
     if b == 0:                                    # O(1) - base case
         return 1, 0, a
     x1, y1, d = extended_euclid(b, a % b)         # O(n) recursive calls
     x = y1                                        # O(1) - assignment
     y = x1 - (a // b) * y1                       # O(n^2) - arithmetic operations
     return x, y, d
+```
 
 The function makes O(n) recursive calls, each doing O(n^2) arithmetic. Overall complexity is O(n^2).
 
